@@ -1,5 +1,7 @@
 import "reflect-metadata";
-import express, { Application, json } from "express";
+import express, { Application } from "express";
 
-export const app: Application = express();
-app.use(json());
+const app: Application = express();
+app.use(express.json());
+
+export default app;
