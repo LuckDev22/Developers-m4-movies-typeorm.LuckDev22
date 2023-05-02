@@ -10,4 +10,6 @@ export const movieSchema = z.object({
 
 export const movieSchemaReq = movieSchema.omit({ id: true });
 
-export const movieSchemaResp = z.array(movieSchema)
+export const movieSchemaResp = z.array(movieSchema);
+
+export const movieSchemaUpdate = movieSchemaReq.partial();
