@@ -18,8 +18,13 @@ export const checkedNameIsExistingMiddleware = async (
         name: nameMovie,
     });
 
+    if (nameMovie === undefined) {
+        return next();
+    }
+
     if (movie) {
         throw new AppError("Movie already exists.", 409);
     }
+
     return next();
 };
