@@ -1,10 +1,7 @@
-export type TMovieReq = {
-    name: string
-    description?: string | undefined
-    duration: number
-    price: number
-}
+import { z } from "zod";
+import { movieSchema, movieSchemaReq, movieSchemaResp } from "../schemas/movie.schemas";
 
 
-// type iMovieUpdate = DeepPartial<Movie>
-// type iMovieRepo = Repository<Movie>
+export type TMovie = z.infer<typeof movieSchema>
+export type TMovieReq = z.infer<typeof movieSchemaReq>
+export type TMovieResp = z.infer<typeof movieSchemaResp>

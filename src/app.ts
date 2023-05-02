@@ -9,6 +9,7 @@ app.use(json());
 
 app.use("/movies", moviesRoutes)
 
+
 app.use(handleErrors)
 
 export default app;
