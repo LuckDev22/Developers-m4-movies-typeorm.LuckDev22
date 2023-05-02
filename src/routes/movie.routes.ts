@@ -6,6 +6,7 @@ import { listMoviesController } from "../controllers/listMovies.constroller";
 import { updateMovieController } from "../controllers/updateMovie.controller";
 import { checkedNameIsExistingMiddleware } from "../middlewares/checkedNameExisting.middleware";
 import { checkedIdMovieExistingMiddleware } from "../middlewares/checkedIdMovieExisting.middleware";
+import { deleteMovieController } from "../controllers/deleteMovies.controller";
 
 export const moviesRoutes: Router = Router();
 
@@ -24,4 +25,10 @@ moviesRoutes.patch(
     checkedIdMovieExistingMiddleware,
     checkedNameIsExistingMiddleware,
     updateMovieController
+);
+
+moviesRoutes.delete(
+    "/:id",
+    checkedIdMovieExistingMiddleware,
+    deleteMovieController
 );
