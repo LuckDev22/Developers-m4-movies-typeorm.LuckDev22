@@ -37,9 +37,10 @@ export const listMoviesService = async (
             order: orderObj,
         });
     }
+
     const count: number = movies.length;
 
-    let prevPage;
+    let prevPage: string | null;
     if (page <= 1) {
         prevPage = null;
     } else {

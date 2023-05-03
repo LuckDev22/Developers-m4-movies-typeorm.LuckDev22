@@ -7,9 +7,8 @@ import { moviesRoutes } from "./routes/movie.routes";
 const app: Application = express();
 app.use(json());
 
-app.use("/movies", moviesRoutes)
+app.use("/movies", moviesRoutes);
 
-
-app.use(handleErrors)
+app.use(handleErrors);
 
 export default app;

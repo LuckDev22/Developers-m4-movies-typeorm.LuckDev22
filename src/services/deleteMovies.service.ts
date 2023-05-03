@@ -5,12 +5,12 @@ import { Movie } from "../entities";
 export const deleteMovieService = async (movieId: number) => {
     const movieRepository: Repository<Movie> =
         AppDataSource.getRepository(Movie);
-        
+
     const movie = await movieRepository.findOne({
         where: {
             id: movieId,
         },
     });
 
-    await movieRepository.remove(movie!)
+    await movieRepository.remove(movie!);
 };
