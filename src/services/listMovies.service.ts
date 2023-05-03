@@ -4,16 +4,15 @@ import { Movie } from "../entities";
 import { AppDataSource } from "../data-source";
 
 export const listMoviesService = async (
-    page: any ,
-    perPage: any ,
+    page: any,
+    perPage: any,
     sort: string | null,
     order: string | null
 ): Promise<TMoviePagResp> => {
     const movieRepository: Repository<Movie> =
         AppDataSource.getRepository(Movie);
 
-    let movies: Movie[] | undefined
-    
+    let movies: Movie[] | undefined;
 
     let orderObj = {};
 
@@ -25,18 +24,11 @@ export const listMoviesService = async (
         orderObj = {
             duration: order,
         };
-    } else {
-        orderObj = {
-            id: "asc",
-        };
     }
-
-    
-    
 
     if (!page || !perPage) {
         movies = await movieRepository.find({
-            order: orderObj,
+            order: { id: "asc" },
         });
     } else {
         movies = await movieRepository.find({
@@ -47,23 +39,24 @@ export const listMoviesService = async (
     }
     const count: number = movies.length;
 
-
-    let prevPage 
+    let prevPage;
     if (page <= 1) {
         prevPage = null;
     } else {
-        prevPage = `http://localhost:3000/movies?page=${page - 1}&perPage=${perPage}`;
+        prevPage = `http://localhost:3000/movies?page=${
+            page - 1
+        }&perPage=${perPage}`;
     }
-    
 
     let nextPage;
 
     if (perPage >= 5) {
         nextPage = null;
     } else {
-        nextPage = `http://localhost:3000/movies?page=${page + 1}&perPage=${perPage}`;
+        nextPage = `http://localhost:3000/movies?page=${
+            page + 1
+        }&perPage=${perPage}`;
     }
-
 
     return {
         prevPage: prevPage,

@@ -13,12 +13,16 @@ export const listMoviesController = async (
         page = 1
     }
 
-    if(perPage <= 0 && perPage < 5){
+    if(!Number.isInteger(perPage) || perPage < 1){
         perPage = 5
+    }else if (perPage > 5) {
+        perPage = 5;
     }
 
     const sort: any = req.query.sort;
-    const order: any = req.query.order;
+    let order: any = req.query.order || "asc";
+    console.log(sort)
+    console.log(order)
 
     const movies: TMoviePagResp = await listMoviesService(
         page,
@@ -26,5 +30,5 @@ export const listMoviesController = async (
         sort,
         order
     );
-    return resp.json(movies);
+    return resp.status(200).json(movies);
 };
