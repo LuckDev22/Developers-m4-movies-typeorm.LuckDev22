@@ -61,12 +61,10 @@ export const listMoviesService = async (
 
     const count: number = movies[1];
 
-    if(count < perPage * page){
-        nextPage = null
+    if (count < perPage * page) {
+        nextPage = null;
     }
 
-
-    console.log(movies[1])
     return {
         prevPage: prevPage,
         nextPage: nextPage,
