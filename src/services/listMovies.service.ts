@@ -24,11 +24,11 @@ export const listMoviesService = async (
         }&perPage=${perPage}`;
     }
 
-    let nextPage;
+    let nextPage: string | null;
 
     if (perPage < 1 || perPage > 5) {
-       perPage = 5
-       nextPage = `http://localhost:3000/movies?page=${
+        perPage = 5;
+        nextPage = `http://localhost:3000/movies?page=${
             page + 1
         }&perPage=${perPage}`;
     } else {
@@ -36,7 +36,6 @@ export const listMoviesService = async (
             page + 1
         }&perPage=${perPage}`;
     }
-
 
     if (sort === "price") {
         orderObj = {
@@ -60,8 +59,14 @@ export const listMoviesService = async (
         });
     }
 
-    const count: number = movies[1]
+    const count: number = movies[1];
 
+    if(count < perPage * page){
+        nextPage = null
+    }
+
+
+    console.log(movies[1])
     return {
         prevPage: prevPage,
         nextPage: nextPage,
