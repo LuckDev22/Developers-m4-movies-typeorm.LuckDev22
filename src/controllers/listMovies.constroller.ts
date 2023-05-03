@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import { listMoviesService } from "../services/listMovies.service";
 import {
-    TMovie,
     TMoviePagResp,
-    TMovieResp,
 } from "../interfaces/movies.interfaces";
 
 export const listMoviesController = async (
@@ -17,16 +15,13 @@ export const listMoviesController = async (
         page = 1;
     }
 
-    if (perPage < 0 || perPage > 5) {
-        perPage = 5;
-    }
-    console.log(page);
-    console.log(perPage);
+    // if (perPage < 0 || perPage > 5) {
+    //     perPage = 5;
+    // }
+    
     const sort: any = req.query.sort;
     let order: any = req.query.order || "asc";
-    console.log(sort);
-    console.log(order);
-
+    
     const movies: TMoviePagResp = await listMoviesService(
         page,
         perPage,
